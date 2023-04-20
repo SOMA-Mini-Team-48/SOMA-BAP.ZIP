@@ -19,5 +19,10 @@ export type Store = {
 	type: number;
 	totalRating: number;
 	link: string;
-	review: Review[];
 };
+export type Bounds = {
+	north: number;
+	south: number;
+	east: number;
+	west: number;
+} | null;

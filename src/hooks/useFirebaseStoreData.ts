@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
-import { Review, Store } from '../types/stores';
+import { Store } from '../types/stores';
 import { db } from '../utils/firebase';
 
 const useFirebaseStoreData = () => {
@@ -14,24 +14,24 @@ const useFirebaseStoreData = () => {
 
 			const storesData: Store[] = await Promise.all(
 				storeSnapshot.docs.map(async (doc) => {
-					let totalRating = 0;
-					const reviewCollectionRef = collection(doc.ref, 'review');
-					const reviewSnapshot = await getDocs(reviewCollectionRef);
-					const reviews: Review[] = reviewSnapshot.docs.map((doc) => {
-						const timestamp = doc.data().date;
-						const date = new Date(
-							timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
-						);
-						const reviewRating = doc.data().rating;
-						totalRating += reviewRating;
-						return {
-							id: doc.id,
-							username: doc.data().username,
-							date: date.toString(),
-							content: doc.data().content,
-							rating: reviewRating,
-						};
-					});
+					// let totalRating = 0;
+					// const reviewCollectionRef = collection(doc.ref, 'review');
+					// const reviewSnapshot = await getDocs(reviewCollectionRef);
+					// const reviews: Review[] = reviewSnapshot.docs.map((doc) => {
+					// 	const timestamp = doc.data().date;
+					// 	const date = new Date(
+					// 		timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
+					// 	);
+					// 	const reviewRating = doc.data().rating;
+					// 	totalRating += reviewRating;
+					// 	return {
+					// 		id: doc.id,
+					// 		username: doc.data().username,
+					// 		date: date.toString(),
+					// 		content: doc.data().content,
+					// 		rating: reviewRating,
+					// 	};
+					// });
 
 					return {
 						id: doc.id,
@@ -41,11 +41,7 @@ const useFirebaseStoreData = () => {
 						coordinates: doc.data().coordinates,
 						link: doc.data().link,
 						type: doc.data().type,
-						review: reviews,
-						totalRating:
-							totalRating != 0
-								? totalRating / reviewSnapshot.docs.length
-								: totalRating,
+						totalRating: 5,
 					};
 				})
 			);

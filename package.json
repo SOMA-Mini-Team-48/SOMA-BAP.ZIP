@@ -12,6 +12,7 @@
 		"@testing-library/react": "^13.4.0",
 		"@testing-library/user-event": "^13.5.0",
 		"@types/jest": "^27.5.2",
+		"@types/navermaps": "^3.6.4",
 		"@types/node": "^16.18.23",
 		"@types/react": "^18.0.37",
 		"@types/react-dom": "^18.0.11",
@@ -21,6 +22,7 @@
 		"react-naver-maps": "^0.1.2",
 		"react-router-dom": "^6.10.0",
 		"react-scripts": "5.0.1",
+		"recoil": "^0.7.7",
 		"typescript": "^4.9.5",
 		"web-vitals": "^2.1.4"
 	},
