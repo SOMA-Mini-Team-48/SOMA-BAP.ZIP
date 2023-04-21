@@ -1,23 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
 	Container as MapDiv,
 	NaverMap,
 	Marker,
 	useNavermaps,
 } from 'react-naver-maps';
-import { Bounds } from '../../types/stores';
+import { Bounds, Store } from '../../types/stores';
 import useCurrentStores from '../../hooks/useCurrentStore';
 import { debounce } from '@mui/material';
-import { useRecoilState } from 'recoil';
-import { selectStoreState } from '../../store/store';
+import StoreBottomDrawerSection from '../StoreBottomDrawerSection';
 
 const SWMAESTRO_CENTER_COORDINATES = { lat: 37.50393, lng: 127.0448 };
 
 const MapSection = () => {
 	const [bounds, setBounds] = useState<Bounds>(null);
-	const { stores, currentStores, isLoading } = useCurrentStores({ bounds });
-	const [selectStore, setSelectStore] = useRecoilState<any>(selectStoreState);
+	const [selectStore, setSelectStore] = useState(null as Store | null);
+	const [drawerOpen, setDrawerOpen] = useState(false);
+	const { currentGlobalStores, isLoading, mapRef } = useCurrentStores({
+		bounds,
+		selectStore,
+	});
 	const navermaps = useNavermaps();
+
 	const handleBoundsChanged = (bounds: any) => {
 		if (!bounds) return;
 		const { _ne, _sw } = bounds;
@@ -32,6 +36,12 @@ const MapSection = () => {
 
 	const handleMarker = (store: any) => {
 		setSelectStore(store);
+		setDrawerOpen(true);
+	};
+
+	const dismissMarker = () => {
+		setSelectStore(null);
+		setDrawerOpen(false);
 	};
 
 	const icon = {
@@ -45,19 +55,28 @@ const MapSection = () => {
 				defaultCenter={SWMAESTRO_CENTER_COORDINATES}
 				onBoundsChanged={debouncedHandleBoundsChanged}
 				center={SWMAESTRO_CENTER_COORDINATES}
+				ref={mapRef}
 			>
 				{selectStore && (
-					<Marker
-						zIndex={100}
-						icon={icon}
-						position={{
-							lat: selectStore.coordinates[0],
-							lng: selectStore.coordinates[1],
-						}}
-					/>
+					<>
+						<Marker
+							zIndex={100}
+							icon={icon}
+							onClick={dismissMarker}
+							position={{
+								lat: selectStore.coordinates[0],
+								lng: selectStore.coordinates[1],
+							}}
+						/>
+					</>
 				)}
+				<StoreBottomDrawerSection
+					isOpen={drawerOpen}
+					storeInfo={selectStore as Store}
+				/>
 				{!isLoading &&
-					stores.map((store) => (
+					currentGlobalStores &&
+					currentGlobalStores.map((store) => (
 						<Marker
 							key={store.id}
 							zIndex={1}
