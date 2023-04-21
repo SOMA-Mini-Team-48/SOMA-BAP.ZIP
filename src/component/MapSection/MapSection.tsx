@@ -1,23 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
 	Container as MapDiv,
 	NaverMap,
 	Marker,
 	useNavermaps,
 } from 'react-naver-maps';
-import { Bounds } from '../../types/stores';
+import { Bounds, Store } from '../../types/stores';
 import useCurrentStores from '../../hooks/useCurrentStore';
-import { debounce } from '@mui/material';
-import { useRecoilState } from 'recoil';
-import { selectStoreState } from '../../store/store';
+import { Box, debounce } from '@mui/material';
+import StoreBottomDrawerSection from '../StoreBottomDrawerSection';
+import Loading from '../Loading';
 
 const SWMAESTRO_CENTER_COORDINATES = { lat: 37.50393, lng: 127.0448 };
 
 const MapSection = () => {
 	const [bounds, setBounds] = useState<Bounds>(null);
-	const { stores, currentStores, isLoading } = useCurrentStores({ bounds });
-	const [selectStore, setSelectStore] = useRecoilState<any>(selectStoreState);
+	const [selectStore, setSelectStore] = useState(null as Store | null);
+	const [drawerOpen, setDrawerOpen] = useState(false);
+	const { currentGlobalStores, isLoading, mapRef } = useCurrentStores({
+		bounds,
+		selectStore,
+	});
 	const navermaps = useNavermaps();
+
 	const handleBoundsChanged = (bounds: any) => {
 		if (!bounds) return;
 		const { _ne, _sw } = bounds;
@@ -32,32 +37,63 @@ const MapSection = () => {
 
 	const handleMarker = (store: any) => {
 		setSelectStore(store);
+		setDrawerOpen(true);
+	};
+
+	const dismissMarker = () => {
+		setSelectStore(null);
+		setDrawerOpen(false);
 	};
 
 	const icon = {
-		url: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png',
+		url: process.env.PUBLIC_URL + '/test.png',
 		size: new navermaps.Size(40, 40),
 	};
 
 	return (
-		<MapDiv style={{ height: '100%' }}>
+		<MapDiv
+			style={{
+				height: '100%',
+				display: 'flex',
+				justifyContent: 'center',
+				flexDirection: 'column',
+				alignItems: 'center',
+			}}
+		>
 			<NaverMap
 				defaultCenter={SWMAESTRO_CENTER_COORDINATES}
 				onBoundsChanged={debouncedHandleBoundsChanged}
 				center={SWMAESTRO_CENTER_COORDINATES}
+				ref={mapRef}
 			>
 				{selectStore && (
-					<Marker
-						zIndex={100}
-						icon={icon}
-						position={{
-							lat: selectStore.coordinates[0],
-							lng: selectStore.coordinates[1],
-						}}
-					/>
+					<>
+						<Marker
+							zIndex={100}
+							icon={icon}
+							onClick={dismissMarker}
+							position={{
+								lat: selectStore.coordinates[0],
+								lng: selectStore.coordinates[1],
+							}}
+						/>
+					</>
 				)}
-				{!isLoading &&
-					stores.map((store) => (
+				<StoreBottomDrawerSection
+					isOpen={drawerOpen}
+					storeInfo={selectStore as Store}
+				/>
+				{isLoading ? (
+					<Box
+						sx={{
+							width: '130px',
+						}}
+					>
+						<Loading></Loading>
+					</Box>
+				) : (
+					currentGlobalStores &&
+					currentGlobalStores.map((store) => (
 						<Marker
 							key={store.id}
 							zIndex={1}
@@ -67,7 +103,8 @@ const MapSection = () => {
 								lng: store.coordinates[1],
 							}}
 						/>
-					))}
+					))
+				)}
 			</NaverMap>
 		</MapDiv>
 	);

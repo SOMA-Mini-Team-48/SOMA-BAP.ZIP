@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import HeaderMobileSection from '../HeaderMobileSection';
 
-const pages = ['맛집 등록', '버그 제보', '위치 공유하기'];
+const pages = ['맛집 등록', '버그 제보'];
 
 const HeaderSection = () => {
 	return (
@@ -21,7 +21,7 @@ const HeaderSection = () => {
 					</Box>
 					<HeaderMobileSection pages={pages} />
 					<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-						{pages.map((page, index) => (
+						{pages.map((page) => (
 							<Button
 								key={page}
 								onClick={() => {

@@ -3,7 +3,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import AddStorePage from './pages/AddStorePage';
 import HeaderSection from './component/HeaderSection';
-import { Box } from '@mui/material';
+import { Container } from '@mui/material';
+import ListPage from './pages/ListPage';
 
 const router = createBrowserRouter([
 	{
@@ -14,11 +15,15 @@ const router = createBrowserRouter([
 		path: 'add-store',
 		element: <AddStorePage />,
 	},
+	{
+		path: 'current-list',
+		element: <ListPage />,
+	},
 ]);
 
 const App = () => {
 	return (
-		<Box
+		<Container
 			sx={{
 				display: 'flex',
 				flexDirection: 'column',
@@ -31,7 +36,7 @@ const App = () => {
 		>
 			<HeaderSection />
 			<RouterProvider router={router} />
-		</Box>
+		</Container>
 	);
 };
 

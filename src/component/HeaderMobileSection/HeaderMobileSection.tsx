@@ -49,7 +49,7 @@ const HeaderMobileSection = ({ pages }: Props) => {
 						display: { xs: 'block', md: 'none' },
 					}}
 				>
-					{pages.slice(0, pages.length - 1).map((page, index) => (
+					{pages.slice(0, pages.length - 1).map((page) => (
 						<MenuItem
 							key={page}
 							onClick={() => {
