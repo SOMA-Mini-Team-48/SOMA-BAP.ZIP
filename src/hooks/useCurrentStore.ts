@@ -42,14 +42,6 @@ const useCurrentStores = ({ bounds, selectStore }: Props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [mapRef, stores, bounds]);
 
-	useEffect(() => {
-		if (!selectStore) return;
-		const [latitude, longitude] = selectStore.coordinates;
-		if (mapRef.current) {
-			mapRef.current.panTo({ lat: latitude, lng: longitude });
-		}
-	}, [selectStore]);
-
 	return { currentGlobalStores, isLoading, mapRef };
 };
 
