@@ -4,6 +4,7 @@ import MainPage from './pages/MainPage';
 import AddStorePage from './pages/AddStorePage';
 import HeaderSection from './component/HeaderSection';
 import { Container } from '@mui/material';
+import ListPage from './pages/ListPage';
 
 const router = createBrowserRouter([
 	{
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
 	{
 		path: 'add-store',
 		element: <AddStorePage />,
+	},
+	{
+		path: 'current-list',
+		element: <ListPage />,
 	},
 ]);
 

@@ -13,17 +13,16 @@ export const DrawerBox = styled(Box)(() => ({
 	overflow: 'hidden',
 }));
 
-export const ContentBox = styled(Box)`
-	padding: 16px;
-`;
+export const ContentBox = styled(Box)({
+	padding: '16px',
+});
+export const CustomStar = styled(Star)({
+	color: '#1976d2',
+	marginRight: '8px',
+});
 
-export const CustomStar = styled(Star)`
-	color: #1976d2;
-	margin-right: 8px;
-`;
-
-export const ListButton = styled(IconButton)`
-	position: 'absolute';
-	right: '16px';
-	top: '-20px';
-`;
+export const ListButton = styled(IconButton)({
+	position: 'absolute',
+	right: '16px',
+	top: '-20px',
+});

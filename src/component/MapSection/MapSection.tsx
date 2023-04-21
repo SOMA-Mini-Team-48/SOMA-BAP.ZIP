@@ -7,8 +7,9 @@ import {
 } from 'react-naver-maps';
 import { Bounds, Store } from '../../types/stores';
 import useCurrentStores from '../../hooks/useCurrentStore';
-import { debounce } from '@mui/material';
+import { Box, debounce } from '@mui/material';
 import StoreBottomDrawerSection from '../StoreBottomDrawerSection';
+import Loading from '../Loading';
 
 const SWMAESTRO_CENTER_COORDINATES = { lat: 37.50393, lng: 127.0448 };
 
@@ -45,12 +46,20 @@ const MapSection = () => {
 	};
 
 	const icon = {
-		url: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png',
+		url: process.env.PUBLIC_URL + '/test.png',
 		size: new navermaps.Size(40, 40),
 	};
 
 	return (
-		<MapDiv style={{ height: '100%' }}>
+		<MapDiv
+			style={{
+				height: '100%',
+				display: 'flex',
+				justifyContent: 'center',
+				flexDirection: 'column',
+				alignItems: 'center',
+			}}
+		>
 			<NaverMap
 				defaultCenter={SWMAESTRO_CENTER_COORDINATES}
 				onBoundsChanged={debouncedHandleBoundsChanged}
@@ -74,7 +83,15 @@ const MapSection = () => {
 					isOpen={drawerOpen}
 					storeInfo={selectStore as Store}
 				/>
-				{!isLoading &&
+				{isLoading ? (
+					<Box
+						sx={{
+							width: '130px',
+						}}
+					>
+						<Loading></Loading>
+					</Box>
+				) : (
 					currentGlobalStores &&
 					currentGlobalStores.map((store) => (
 						<Marker
@@ -86,7 +103,8 @@ const MapSection = () => {
 								lng: store.coordinates[1],
 							}}
 						/>
-					))}
+					))
+				)}
 			</NaverMap>
 		</MapDiv>
 	);

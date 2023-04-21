@@ -9,6 +9,7 @@ import {
 } from './StoreBottomDrawerSection.style';
 import { currentStoresState } from '../../store/store';
 import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 interface BottomSheetProps {
 	isOpen: boolean;
@@ -19,10 +20,14 @@ const StoreBottomDrawerSection: React.FC<BottomSheetProps> = ({
 	isOpen,
 	storeInfo,
 }) => {
+	const navigate = useNavigate();
+
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [currentGlobalStores, setCurrentGlobalStores] =
 		useRecoilState(currentStoresState);
-
+	const handleListButton = () => {
+		navigate('/current-list', { state: { stores: currentGlobalStores } });
+	};
 	return (
 		<Box
 			sx={{
@@ -32,7 +37,12 @@ const StoreBottomDrawerSection: React.FC<BottomSheetProps> = ({
 				width: '100%',
 			}}
 		>
-			<Button variant="contained" sx={{ margin: 1 }} startIcon={<Menu />}>
+			<Button
+				variant="contained"
+				sx={{ margin: 1 }}
+				startIcon={<Menu />}
+				onClick={handleListButton}
+			>
 				목록 {currentGlobalStores && currentGlobalStores.length}
 			</Button>
 			<DrawerBox
