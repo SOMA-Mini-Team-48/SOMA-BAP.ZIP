@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import HeaderMobileSection from '../HeaderMobileSection';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HeaderSection = () => {
 	const navigate = useNavigate();
@@ -24,7 +24,9 @@ const HeaderSection = () => {
 			<Container maxWidth="xl" sx={{ zIndex: 99 }}>
 				<Toolbar disableGutters>
 					<Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 6 }}>
-						<img src="/logo240.webp" alt="logo" height={50} />
+						<Link to="/">
+							<img src="/logo240.webp" alt="logo" height={50} />
+						</Link>
 					</Box>
 					<HeaderMobileSection pages={pages} pagesHandlers={pagesHandlers} />
 					<Box sx={{ display: { xs: 'none', md: 'flex' } }}>

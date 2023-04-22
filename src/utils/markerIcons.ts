@@ -83,3 +83,13 @@ export const typeToKoreanArr = [
 	'카페',
 	'패스트푸드',
 ];
+
+export const foodCategoryImgsrc = [
+	process.env.PUBLIC_URL + 'food-category/한식.webp',
+	process.env.PUBLIC_URL + 'food-category/일식.webp',
+	process.env.PUBLIC_URL + 'food-category/중식.webp',
+	process.env.PUBLIC_URL + 'food-category/분식.webp',
+	process.env.PUBLIC_URL + 'food-category/양식.webp',
+	process.env.PUBLIC_URL + 'food-category/카페.webp',
+	process.env.PUBLIC_URL + 'food-category/패스트푸드.webp',
+];
