@@ -11,7 +11,7 @@ const ListPage = () => {
 	const navigate = useNavigate();
 
 	const handleMapButton = () => {
-		navigate('/');
+		navigate('/', { replace: true });
 	};
 	return (
 		<Box height={'100%'} bgcolor={'#fff'} overflow="scroll">
@@ -22,7 +22,7 @@ const ListPage = () => {
 			) : (
 				<h1>데이터 없음</h1>
 			)}
-			<Box>
+			<Box sx={{ display: 'flex', justifyContent: 'end' }}>
 				<Button
 					sx={{ position: 'absolute', bottom: 0, m: 1 }}
 					startIcon={<Map />}
@@ -32,6 +32,7 @@ const ListPage = () => {
 					지도
 				</Button>
 			</Box>
+			<Box height={15} />
 		</Box>
 	);
 };

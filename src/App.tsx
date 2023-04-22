@@ -5,11 +5,13 @@ import AddStorePage from './pages/AddStorePage';
 import HeaderSection from './component/HeaderSection';
 import { Container } from '@mui/material';
 import ListPage from './pages/ListPage';
+import DetailStorePage from './pages/DetailStorePage';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <MainPage />,
+		errorElement: <div>404</div>,
 	},
 	{
 		path: 'add-store',
@@ -18,6 +20,10 @@ const router = createBrowserRouter([
 	{
 		path: 'current-list',
 		element: <ListPage />,
+	},
+	{
+		path: 'store/:id',
+		element: <DetailStorePage />,
 	},
 ]);
 
@@ -33,6 +39,7 @@ const App = () => {
 				padding: 0,
 				margin: 0,
 			}}
+			maxWidth="lg"
 		>
 			<HeaderSection />
 			<RouterProvider router={router} />

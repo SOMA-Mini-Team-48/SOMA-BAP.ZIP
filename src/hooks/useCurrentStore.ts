@@ -27,14 +27,18 @@ const useCurrentStores = ({ bounds, selectStore }: Props) => {
 	};
 
 	const filterCurrentStores = (bounds: Bounds) => {
-		if (!bounds) return;
-		const filteredStores = stores.filter((store: Store) => {
-			const [latitude, longitude] = store.coordinates;
-			if (latitude > bounds.north || latitude < bounds.south) return false;
-			if (longitude > bounds.east || longitude < bounds.west) return false;
-			return true;
-		});
-		setCurrentGlobalStores(filteredStores);
+		try {
+			if (!bounds) return;
+			const filteredStores = stores.filter((store: Store) => {
+				const [latitude, longitude] = store.coordinates;
+				if (latitude > bounds.north || latitude < bounds.south) return false;
+				if (longitude > bounds.east || longitude < bounds.west) return false;
+				return true;
+			});
+			setCurrentGlobalStores(filteredStores);
+		} catch (e) {
+			setCurrentGlobalStores([]);
+		}
 	};
 
 	useEffect(() => {

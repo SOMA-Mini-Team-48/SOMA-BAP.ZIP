@@ -2,12 +2,21 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { Store } from '../../types/stores';
 import { ContentBox, CustomStar } from './StoreListItem.style';
+import { useNavigate } from 'react-router-dom';
 
 const StoreListItem = ({ store }: { store: Store }) => {
+	const navigate = useNavigate();
+	const handleStoreClick = () => {
+		navigate(`/store/${store.id}`, { state: { store } });
+	};
 	return (
 		<Box>
 			<ContentBox>
-				<Typography variant="h6" sx={{ fontWeight: '600' }}>
+				<Typography
+					variant="h6"
+					sx={{ fontWeight: '600' }}
+					onClick={handleStoreClick}
+				>
 					{store.name}
 				</Typography>
 				<Typography variant="body2" gutterBottom color="text.secondary">
@@ -26,7 +35,7 @@ const StoreListItem = ({ store }: { store: Store }) => {
 						{store.totalRating.toFixed(1)}
 					</Typography>
 					<Typography variant="body2" color="textSecondary">
-						({4} 리뷰)
+						({store.reviewCount} 리뷰)
 					</Typography>
 				</Box>
 			</ContentBox>

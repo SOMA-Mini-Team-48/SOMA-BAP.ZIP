@@ -8,7 +8,7 @@ export type Review = {
 	username: string;
 	content: string;
 	rating: number;
-	date: string;
+	date: any;
 };
 export type Store = {
 	id: string;
@@ -19,6 +19,7 @@ export type Store = {
 	type: number;
 	totalRating: number;
 	link: string;
+	reviewCount: number;
 };
 export type Bounds = {
 	north: number;

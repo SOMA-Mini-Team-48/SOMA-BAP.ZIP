@@ -7,7 +7,7 @@ import {
 } from 'react-naver-maps';
 import { Bounds, Store } from '../../types/stores';
 import useCurrentStores from '../../hooks/useCurrentStore';
-import { Box, debounce } from '@mui/material';
+import { debounce } from '@mui/material';
 import StoreBottomDrawerSection from '../StoreBottomDrawerSection';
 import Loading from '../Loading';
 
@@ -84,13 +84,7 @@ const MapSection = () => {
 					storeInfo={selectStore as Store}
 				/>
 				{isLoading ? (
-					<Box
-						sx={{
-							width: '130px',
-						}}
-					>
-						<Loading></Loading>
-					</Box>
+					<Loading></Loading>
 				) : (
 					currentGlobalStores &&
 					currentGlobalStores.map((store) => (

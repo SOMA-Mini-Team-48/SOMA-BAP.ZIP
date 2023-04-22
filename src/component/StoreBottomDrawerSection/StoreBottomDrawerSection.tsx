@@ -28,6 +28,9 @@ const StoreBottomDrawerSection: React.FC<BottomSheetProps> = ({
 	const handleListButton = () => {
 		navigate('/current-list', { state: { stores: currentGlobalStores } });
 	};
+	const handleStoreButton = (store: Store) => {
+		navigate(`/store/${store.id}`, { state: { store } });
+	};
 	return (
 		<Box
 			sx={{
@@ -37,14 +40,21 @@ const StoreBottomDrawerSection: React.FC<BottomSheetProps> = ({
 				width: '100%',
 			}}
 		>
-			<Button
-				variant="contained"
-				sx={{ margin: 1 }}
-				startIcon={<Menu />}
-				onClick={handleListButton}
+			<Box
+				sx={{
+					display: 'flex',
+					justifyContent: 'end',
+				}}
 			>
-				목록 {currentGlobalStores && currentGlobalStores.length}
-			</Button>
+				<Button
+					variant="contained"
+					sx={{ margin: 1 }}
+					startIcon={<Menu />}
+					onClick={handleListButton}
+				>
+					목록 {currentGlobalStores && currentGlobalStores.length}
+				</Button>
+			</Box>
 			<DrawerBox
 				sx={{
 					transition: '0.3s ease-in-out',
@@ -54,7 +64,13 @@ const StoreBottomDrawerSection: React.FC<BottomSheetProps> = ({
 			>
 				{storeInfo && (
 					<ContentBox>
-						<Typography variant="h6" sx={{ fontWeight: '600' }}>
+						<Typography
+							variant="h6"
+							sx={{ fontWeight: '600' }}
+							onClick={() => {
+								handleStoreButton(storeInfo);
+							}}
+						>
 							{storeInfo.name}
 						</Typography>
 						<Typography variant="body2" gutterBottom color="text.secondary">
@@ -73,7 +89,7 @@ const StoreBottomDrawerSection: React.FC<BottomSheetProps> = ({
 								{storeInfo.totalRating.toFixed(1)}
 							</Typography>
 							<Typography variant="body2" color="textSecondary">
-								({4} 리뷰)
+								({storeInfo.reviewCount} 리뷰)
 							</Typography>
 						</Box>
 					</ContentBox>
