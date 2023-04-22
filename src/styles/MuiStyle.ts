@@ -5,4 +5,9 @@ export const theme = createTheme({
 		fontFamily: 'Pretendard-Regular, sans-serif',
 		fontWeightRegular: 400,
 	},
+	palette: {
+		primary: {
+			main: '#2B6FF3',
+		},
+	},
 });

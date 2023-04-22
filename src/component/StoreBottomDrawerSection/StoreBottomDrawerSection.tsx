@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Chip } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 import { Store } from '../../types/stores';
 import {
@@ -10,6 +10,7 @@ import {
 import { currentStoresState } from '../../store/store';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { typeToKoreanArr } from '../../utils/markerIcons';
 
 interface BottomSheetProps {
 	isOpen: boolean;
@@ -59,11 +60,18 @@ const StoreBottomDrawerSection: React.FC<BottomSheetProps> = ({
 				sx={{
 					transition: '0.3s ease-in-out',
 					transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
-					height: isOpen ? '130px' : 0,
+					height: isOpen ? '140px' : 0,
 				}}
 			>
 				{storeInfo && (
 					<ContentBox>
+						<Chip
+							label={typeToKoreanArr[storeInfo.type]}
+							size="small"
+							sx={{
+								mb: 1,
+							}}
+						/>
 						<Typography
 							variant="h6"
 							sx={{ fontWeight: '600' }}
@@ -86,7 +94,7 @@ const StoreBottomDrawerSection: React.FC<BottomSheetProps> = ({
 						>
 							<CustomStar />
 							<Typography variant="body1">
-								{storeInfo.totalRating?.toFixed(1)}
+								{storeInfo.totalRating?.toFixed(1)}&nbsp;
 							</Typography>
 							<Typography variant="body2" color="textSecondary">
 								({storeInfo.reviewCount} 리뷰)

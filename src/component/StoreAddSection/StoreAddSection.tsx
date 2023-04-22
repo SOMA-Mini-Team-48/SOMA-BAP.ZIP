@@ -97,8 +97,13 @@ const StoreAddSection = () => {
 						onChange={(e) => setType(parseInt(e.target.value.toString()))}
 						required
 					>
-						<MenuItem value={0}>밥집</MenuItem>
-						<MenuItem value={1}>카페</MenuItem>
+						<MenuItem value={0}>한식</MenuItem>
+						<MenuItem value={1}>일식</MenuItem>
+						<MenuItem value={2}>중식</MenuItem>
+						<MenuItem value={3}>분식</MenuItem>
+						<MenuItem value={4}>양식</MenuItem>
+						<MenuItem value={5}>커피</MenuItem>
+						<MenuItem value={6}>패스트푸드</MenuItem>
 					</Select>
 				</FormControl>
 				<TextField

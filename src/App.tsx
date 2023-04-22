@@ -6,6 +6,7 @@ import HeaderSection from './component/HeaderSection';
 import { Container } from '@mui/material';
 import ListPage from './pages/ListPage';
 import DetailStorePage from './pages/DetailStorePage';
+import ErrorPage from './pages/404Page';
 
 const App = () => {
 	return (
@@ -24,11 +25,27 @@ const App = () => {
 			<BrowserRouter>
 				<HeaderSection />
 				<Routes>
-					<Route path="/" element={<MainPage />}></Route>
-					<Route path="/add-store" element={<AddStorePage />}></Route>
-					{/* 상단에 위치하는 라우트들의 규칙을 모두 확인, 일치하는 라우트가 없는경우 처리 */}
-					<Route path="/current-list" element={<ListPage />}></Route>
-					<Route path="/store/:id" element={<DetailStorePage />}></Route>
+					<Route
+						path="/"
+						element={<MainPage />}
+						errorElement={<ErrorPage />}
+					></Route>
+					<Route
+						path="/add-store"
+						element={<AddStorePage />}
+						errorElement={<ErrorPage />}
+					></Route>
+					<Route
+						path="/current-list"
+						element={<ListPage />}
+						errorElement={<ErrorPage />}
+					></Route>
+					<Route
+						path="/store/:id"
+						element={<DetailStorePage />}
+						errorElement={<ErrorPage />}
+					></Route>
+					<Route path="*" element={<ErrorPage />}></Route>
 				</Routes>
 			</BrowserRouter>
 		</Container>
