@@ -24,9 +24,7 @@ const HeaderSection = () => {
 			<Container maxWidth="xl" sx={{ zIndex: 99 }}>
 				<Toolbar disableGutters>
 					<Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 6 }}>
-						<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-							title
-						</Typography>
+						<img src="/logo240.webp" alt="logo" height={50} />
 					</Box>
 					<HeaderMobileSection pages={pages} pagesHandlers={pagesHandlers} />
 					<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -36,7 +34,12 @@ const HeaderSection = () => {
 								onClick={pagesHandlers[index]}
 								sx={{ my: 2, display: 'block', mx: 1 }}
 							>
-								<Typography textAlign="center" fontSize={18}>
+								<Typography
+									textAlign="center"
+									fontSize={18}
+									color={'black'}
+									fontWeight={600}
+								>
 									{page}
 								</Typography>
 							</Button>

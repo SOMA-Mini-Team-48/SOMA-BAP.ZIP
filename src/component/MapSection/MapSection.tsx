@@ -10,6 +10,10 @@ import useCurrentStores from '../../hooks/useCurrentStore';
 import { debounce } from '@mui/material';
 import StoreBottomDrawerSection from '../StoreBottomDrawerSection';
 import Loading from '../Loading';
+import {
+	selectedMarkerIcon,
+	unSelectedMarkerIcon,
+} from '../../utils/markerIcons';
 
 const SWMAESTRO_CENTER_COORDINATES = { lat: 37.50393, lng: 127.0448 };
 
@@ -21,6 +25,7 @@ const MapSection = () => {
 		bounds,
 		selectStore,
 	});
+
 	const navermaps = useNavermaps();
 
 	const handleBoundsChanged = (bounds: any) => {
@@ -45,11 +50,6 @@ const MapSection = () => {
 		setDrawerOpen(false);
 	};
 
-	const icon = {
-		url: process.env.PUBLIC_URL + '/test.png',
-		size: new navermaps.Size(40, 40),
-	};
-
 	return (
 		<MapDiv
 			style={{
@@ -70,7 +70,7 @@ const MapSection = () => {
 					<>
 						<Marker
 							zIndex={100}
-							icon={icon}
+							icon={selectedMarkerIcon(selectStore.type, navermaps)}
 							onClick={dismissMarker}
 							position={{
 								lat: selectStore.coordinates[0],
@@ -91,6 +91,7 @@ const MapSection = () => {
 						<Marker
 							key={store.id}
 							zIndex={1}
+							icon={unSelectedMarkerIcon(store.type, navermaps)}
 							onClick={() => handleMarker(store)}
 							position={{
 								lat: store.coordinates[0],

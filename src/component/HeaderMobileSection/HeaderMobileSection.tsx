@@ -64,9 +64,9 @@ const HeaderMobileSection = ({ pages, pagesHandlers }: Props) => {
 				</Menu>
 			</Box>
 			<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-				{/* logo */}
+				<img src="/logo240.webp" alt="logo" height={50} />
 			</Box>
-			<Box sx={{ display: { xs: 'flex', md: 'none' } }}></Box>
+			<Box sx={{ flexGrow: 1 }}></Box>
 		</Fragment>
 	);
 };

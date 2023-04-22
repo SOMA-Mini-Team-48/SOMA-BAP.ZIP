@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Chip, Divider, Typography } from '@mui/material';
 import { Store } from '../../types/stores';
 import { ContentBox, CustomStar } from './StoreListItem.style';
 import { useNavigate } from 'react-router-dom';
+import { typeToKoreanArr } from '../../utils/markerIcons';
 
 const StoreListItem = ({ store }: { store: Store }) => {
 	const navigate = useNavigate();
@@ -12,6 +13,13 @@ const StoreListItem = ({ store }: { store: Store }) => {
 	return (
 		<Box>
 			<ContentBox>
+				<Chip
+					label={typeToKoreanArr[store.type]}
+					size="small"
+					sx={{
+						mb: 1,
+					}}
+				/>
 				<Typography
 					variant="h6"
 					sx={{ fontWeight: '600' }}
@@ -27,18 +35,19 @@ const StoreListItem = ({ store }: { store: Store }) => {
 					sx={{
 						display: 'flex',
 						alignItems: 'center',
-						marginBottom: '16px',
+						marginBottom: '8px',
 					}}
 				>
 					<CustomStar />
 					<Typography variant="body1">
-						{store.totalRating?.toFixed(1)}
+						{store.totalRating?.toFixed(1)}&nbsp;
 					</Typography>
 					<Typography variant="body2" color="textSecondary">
 						({store.reviewCount} 리뷰)
 					</Typography>
 				</Box>
 			</ContentBox>
+			<Divider />
 		</Box>
 	);
 };

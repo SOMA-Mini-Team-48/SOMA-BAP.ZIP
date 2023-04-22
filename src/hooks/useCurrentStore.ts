@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useTransition } from 'react';
 import useFirebaseStoreData from './useFirebaseStoreData';
 import { Bounds, Store } from '../types/stores';
 import { useRecoilState } from 'recoil';
@@ -13,7 +13,6 @@ const useCurrentStores = ({ bounds, selectStore }: Props) => {
 	const { stores, isLoading } = useFirebaseStoreData();
 	const [currentGlobalStores, setCurrentGlobalStores] =
 		useRecoilState(currentStoresState);
-
 	const mapRef = useRef<any>(null);
 	const convertBounds = (mapRef: any) => {
 		if (!mapRef.current?.bounds) return;
