@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import useFirebaseIndivStoreData from '../hooks/useFirebaseIndivStoreData';
 import { Box } from '@mui/material';
 import Loading from '../component/Loading';
-import IndivStoreSection from '../component/IndivStoreSection';
+import DetailStoreSection from '../component/DetailStoreSection';
 
 const DetailStorePage = () => {
 	const location = useLocation();
@@ -24,7 +24,7 @@ const DetailStorePage = () => {
 			</Box>
 		);
 	}
-	return <IndivStoreSection />;
+	return <DetailStoreSection />;
 };
 
 export default DetailStorePage;

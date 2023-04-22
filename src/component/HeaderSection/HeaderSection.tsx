@@ -6,12 +6,21 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import HeaderMobileSection from '../HeaderMobileSection';
-
-const pages = ['맛집 등록', '버그 제보'];
+import { useNavigate } from 'react-router-dom';
 
 const HeaderSection = () => {
+	const navigate = useNavigate();
+	const pages = ['맛집 등록', '버그 제보'];
+	const pagesHandlers = [
+		() => {
+			navigate('/add-store');
+		},
+		() => {
+			window.open('https://open.kakao.com/o/sNT8Sq0e', '_blank');
+		},
+	];
 	return (
-		<AppBar position="static" color="primary">
+		<AppBar position="static" color="inherit">
 			<Container maxWidth="xl" sx={{ zIndex: 99 }}>
 				<Toolbar disableGutters>
 					<Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 6 }}>
@@ -19,15 +28,13 @@ const HeaderSection = () => {
 							title
 						</Typography>
 					</Box>
-					<HeaderMobileSection pages={pages} />
+					<HeaderMobileSection pages={pages} pagesHandlers={pagesHandlers} />
 					<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-						{pages.map((page) => (
+						{pages.map((page, index) => (
 							<Button
 								key={page}
-								onClick={() => {
-									return;
-								}}
-								sx={{ my: 2, color: 'white', display: 'block', mx: 1 }}
+								onClick={pagesHandlers[index]}
+								sx={{ my: 2, display: 'block', mx: 1 }}
 							>
 								<Typography textAlign="center" fontSize={18}>
 									{page}

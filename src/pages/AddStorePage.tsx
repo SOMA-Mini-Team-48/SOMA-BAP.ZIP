@@ -1,10 +1,11 @@
 import { Box } from '@mui/material';
 import React from 'react';
+import StoreAddSection from '../component/StoreAddSection';
 
 const AddStorePage = () => {
 	return (
-		<Box>
-			<Box></Box>
+		<Box sx={{ height: '100%', bgcolor: '#fff' }}>
+			<StoreAddSection />
 		</Box>
 	);
 };

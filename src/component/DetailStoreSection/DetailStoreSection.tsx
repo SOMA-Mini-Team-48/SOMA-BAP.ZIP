@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import React from 'react';
 
-const IndivStoreSection = () => {
-	return <Box height={'100%'}></Box>;
+const DetailStoreSection = () => {
+	return <Box sx={{ heigth: '100%', background: '#fff' }}></Box>;
 };
 
-export default IndivStoreSection;
+export default DetailStoreSection;

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import { Fragment, MouseEvent, useState } from 'react';
-import { Share, Menu as MenuIcon } from '@mui/icons-material';
+import { Menu as MenuIcon } from '@mui/icons-material';
 
 type Props = {
 	pages: string[];
+	pagesHandlers: (() => void)[];
 };
 
-const HeaderMobileSection = ({ pages }: Props) => {
+const HeaderMobileSection = ({ pages, pagesHandlers }: Props) => {
 	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
 	const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
@@ -49,11 +50,12 @@ const HeaderMobileSection = ({ pages }: Props) => {
 						display: { xs: 'block', md: 'none' },
 					}}
 				>
-					{pages.slice(0, pages.length - 1).map((page) => (
+					{pages.map((page, index) => (
 						<MenuItem
 							key={page}
 							onClick={() => {
-								return;
+								handleCloseNavMenu();
+								pagesHandlers[index]();
 							}}
 						>
 							<Typography textAlign="center">{page}</Typography>
@@ -64,9 +66,7 @@ const HeaderMobileSection = ({ pages }: Props) => {
 			<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 				{/* logo */}
 			</Box>
-			<Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-				<Share />
-			</Box>
+			<Box sx={{ display: { xs: 'flex', md: 'none' } }}></Box>
 		</Fragment>
 	);
 };
