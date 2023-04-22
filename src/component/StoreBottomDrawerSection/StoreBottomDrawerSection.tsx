@@ -86,7 +86,7 @@ const StoreBottomDrawerSection: React.FC<BottomSheetProps> = ({
 						>
 							<CustomStar />
 							<Typography variant="body1">
-								{storeInfo.totalRating.toFixed(1)}
+								{storeInfo.totalRating?.toFixed(1)}
 							</Typography>
 							<Typography variant="body2" color="textSecondary">
 								({storeInfo.reviewCount} 리뷰)

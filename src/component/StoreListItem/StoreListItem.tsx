@@ -32,7 +32,7 @@ const StoreListItem = ({ store }: { store: Store }) => {
 				>
 					<CustomStar />
 					<Typography variant="body1">
-						{store.totalRating.toFixed(1)}
+						{store.totalRating?.toFixed(1)}
 					</Typography>
 					<Typography variant="body2" color="textSecondary">
 						({store.reviewCount} 리뷰)
