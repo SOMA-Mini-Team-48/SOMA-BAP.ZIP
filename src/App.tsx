@@ -7,6 +7,7 @@ import { Container } from '@mui/material';
 import ListPage from './pages/ListPage';
 import DetailStorePage from './pages/DetailStorePage';
 import ErrorPage from './pages/404Page';
+import SearchModal from './component/SearchModal';
 
 const App = () => {
 	return (
@@ -24,6 +25,7 @@ const App = () => {
 		>
 			<BrowserRouter>
 				<HeaderSection />
+				<SearchModal />
 				<Routes>
 					<Route
 						path="/"

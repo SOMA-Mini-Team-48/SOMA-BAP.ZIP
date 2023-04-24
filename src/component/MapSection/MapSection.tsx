@@ -23,7 +23,6 @@ const MapSection = () => {
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const { currentGlobalStores, isLoading, mapRef } = useCurrentStores({
 		bounds,
-		selectStore,
 	});
 
 	const navermaps = useNavermaps();

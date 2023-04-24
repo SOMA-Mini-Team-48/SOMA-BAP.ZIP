@@ -24,7 +24,6 @@ const useFirebaseIndivStoreData = (id: string | undefined) => {
 					};
 				})
 			);
-			console.log(reviewData);
 			setReviews(reviewData as Review | []);
 			setIsLoading(false);
 		};

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useTransition } from 'react';
+import { useEffect, useRef } from 'react';
 import useFirebaseStoreData from './useFirebaseStoreData';
 import { Bounds, Store } from '../types/stores';
 import { useRecoilState } from 'recoil';
@@ -6,10 +6,9 @@ import { currentStoresState } from '../store/store';
 
 type Props = {
 	bounds: any;
-	selectStore: Store | null;
 };
 
-const useCurrentStores = ({ bounds, selectStore }: Props) => {
+const useCurrentStores = ({ bounds }: Props) => {
 	const { stores, isLoading } = useFirebaseStoreData();
 	const [currentGlobalStores, setCurrentGlobalStores] =
 		useRecoilState(currentStoresState);
