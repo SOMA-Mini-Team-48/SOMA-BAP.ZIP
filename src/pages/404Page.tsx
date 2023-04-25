@@ -1,8 +1,10 @@
 import { Box, Button } from '@mui/material';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 const ErrorPage = () => {
+	const navigate = useNavigate();
 	const handleToMainButton = () => {
-		window.location.replace('/');
+		navigate('/', { replace: true });
 	};
 	return (
 		<Box sx={{ height: '100%', bgcolor: '#fff', textAlign: 'center' }}>

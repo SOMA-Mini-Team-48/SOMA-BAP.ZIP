@@ -1,10 +1,82 @@
-import { Box } from '@mui/material';
+import { Box, Button, Rating, Typography } from '@mui/material';
 import React from 'react';
+import { Store } from '../../types/stores';
+import { Star } from '@mui/icons-material';
 
-const DetailStoreSection = () => {
+type Props = {
+	store: Store;
+};
+
+const DetailStoreSection = ({ store }: Props) => {
 	return (
 		<Box sx={{ heigth: '100%', background: '#000' }}>
-			{/* <h1>{indivStore.name}</h1> */}
+			<Box
+				sx={{
+					marginTop: '10px',
+					backgroundColor: 'white',
+					height: '100%',
+					textAlign: 'center',
+					paddingTop: '25px',
+				}}
+			>
+				<div
+					style={{
+						fontSize: '100%',
+						border: '5px solid #1976d2',
+						width: '80%',
+						margin: '0px auto',
+						textAlign: 'center',
+						marginBottom: '7px',
+					}}
+				>
+					<h1
+						style={{
+							marginBottom: '1px',
+							fontSize: '1.5em',
+						}}
+					>
+						{store.name}
+					</h1>
+					<span
+						style={{
+							fontSize: '0.9em',
+							display: 'block',
+							paddingBottom: '7px',
+						}}
+					>
+						{store.description}
+					</span>
+					<div
+						style={{
+							display: 'flex',
+							justifyContent: 'center',
+							marginBottom: '10px',
+						}}
+					>
+						<Box
+							sx={{
+								width: '200px',
+								display: 'flex',
+								alignItems: 'center',
+							}}
+						>
+							<Rating
+								value={store.totalRating}
+								readOnly
+								precision={0.5}
+								emptyIcon={
+									<Star style={{ opacity: 0.55 }} fontSize="inherit" />
+								}
+							/>
+							<Box sx={{ ml: 0.3 }}>({store.reviewCount})</Box>
+						</Box>
+						<Typography component="legend">{store.address}</Typography>
+					</div>
+				</div>
+				<Button variant="outlined" sx={{ width: '80%' }} href={`${store.link}`}>
+					카카오맵 링크
+				</Button>
+			</Box>
 		</Box>
 	);
 };

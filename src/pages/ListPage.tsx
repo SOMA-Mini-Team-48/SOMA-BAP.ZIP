@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, MenuItem, Select } from '@mui/material';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Store } from '../types/stores';
 import { Map } from '@mui/icons-material';
 import StoreListSection from '../component/StoreListSection';
@@ -8,10 +8,11 @@ import StoreListSection from '../component/StoreListSection';
 const ListPage = () => {
 	const location = useLocation();
 	const stores = location.state?.stores ?? [];
+	const navigate = useNavigate();
 	const [sortBy, setSortBy] = useState('랜덤순');
 	const [sortedStores, setSortedStores] = useState<Store[]>(stores);
 	const handleMapButton = () => {
-		window.location.replace('/');
+		navigate('/', { replace: true });
 	};
 
 	const changeSortBy = (e: {

@@ -5,14 +5,14 @@ import { db } from '../utils/firebase';
 import { useRecoilState } from 'recoil';
 import { allStoresState } from '../store/store';
 
-const unSelectedImageIcons = [
-	process.env.PUBLIC_URL + '/unselected-marker-icons/한식.webp',
-	process.env.PUBLIC_URL + '/unselected-marker-icons/일식.webp',
-	process.env.PUBLIC_URL + '/unselected-marker-icons/중식.webp',
-	process.env.PUBLIC_URL + '/unselected-marker-icons/분식.webp',
-	process.env.PUBLIC_URL + '/unselected-marker-icons/양식.webp',
-	process.env.PUBLIC_URL + '/unselected-marker-icons/카페.webp',
-	process.env.PUBLIC_URL + '/unselected-marker-icons/패스트푸드.webp',
+const fooCategoryImageIcons = [
+	process.env.PUBLIC_URL + '/food-category/한식.webp',
+	process.env.PUBLIC_URL + '/food-category/일식.webp',
+	process.env.PUBLIC_URL + '/food-category/중식.webp',
+	process.env.PUBLIC_URL + '/food-category/분식.webp',
+	process.env.PUBLIC_URL + '/food-category/양식.webp',
+	process.env.PUBLIC_URL + '/food-category/카페.webp',
+	process.env.PUBLIC_URL + '/food-category/패스트푸드.webp',
 ];
 
 const useFirebaseStoreData = () => {
@@ -49,9 +49,9 @@ const useFirebaseStoreData = () => {
 		fetchStores();
 	}, []);
 	useLayoutEffect(() => {
-		for (let i = 0; i < unSelectedImageIcons.length; i++) {
+		for (let i = 0; i < fooCategoryImageIcons.length; i++) {
 			const img = new Image();
-			img.src = unSelectedImageIcons[i];
+			img.src = fooCategoryImageIcons[i];
 		}
 	}, []);
 

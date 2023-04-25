@@ -25,8 +25,6 @@ const MapSection = () => {
 		bounds,
 	});
 
-	const navermaps = useNavermaps();
-
 	const handleBoundsChanged = (bounds: any) => {
 		if (!bounds) return;
 		const { _ne, _sw } = bounds;
@@ -72,7 +70,7 @@ const MapSection = () => {
 					<>
 						<Marker
 							zIndex={100}
-							icon={selectedMarkerIcon(selectStore.type, navermaps)}
+							icon={selectedMarkerIcon(selectStore.type)}
 							onClick={dismissMarker}
 							position={{
 								lat: selectStore.coordinates[0],
@@ -93,7 +91,7 @@ const MapSection = () => {
 						<Marker
 							key={store.id}
 							zIndex={1}
-							icon={unSelectedMarkerIcon(store.type, navermaps)}
+							icon={unSelectedMarkerIcon(store.type)}
 							onClick={() => handleMarker(store)}
 							position={{
 								lat: store.coordinates[0],
