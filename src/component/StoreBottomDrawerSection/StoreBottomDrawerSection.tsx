@@ -86,6 +86,7 @@ const StoreBottomDrawerSection: React.FC<BottomSheetProps> = ({
 										fontWeight: '600',
 										whiteSpace: 'nowrap',
 										textOverflow: 'ellipsis',
+										cursor: 'pointer',
 									}}
 									onClick={() => {
 										handleStoreButton(storeInfo);

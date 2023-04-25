@@ -30,7 +30,7 @@ const StoreListItem = ({ store }: { store: Store }) => {
 						/>
 						<Typography
 							variant="h6"
-							sx={{ fontWeight: '600' }}
+							sx={{ fontWeight: '600', cursor: 'pointer' }}
 							onClick={handleStoreClick}
 						>
 							{store.name}
