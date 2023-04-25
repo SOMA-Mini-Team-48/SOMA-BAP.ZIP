@@ -1,6 +1,6 @@
-import { Box, Button, Rating, Typography, Paper } from '@mui/material';
+import { Box, Button, Rating, Typography } from '@mui/material';
 import React from 'react';
-import { Store, Review } from '../../types/stores';
+import { Store } from '../../types/stores';
 import { Star } from '@mui/icons-material';
 import StoreReviewSection from './StoreReviewSection';
 
@@ -78,21 +78,13 @@ const DetailStoreSection = ({ store, reviews }: Props) => {
 				<Button variant="outlined" sx={{ width: '80%' }} href={`${store.link}`}>
 					카카오맵 링크
 				</Button>
-				<Paper
-					elevation={3}
-					sx={{
-						display: 'block',
-						margin: 'auto',
-					}}
-				>
-					{reviews && reviews?.length >= 1 ? (
-						reviews.map((review: any) => {
-							return <StoreReviewSection review={review} key={review.id} />;
-						})
-					) : (
-						<h1>리뷰 없음</h1>
-					)}
-				</Paper>
+				{reviews && reviews?.length >= 1 ? (
+					reviews.map((review: any) => {
+						return <StoreReviewSection review={review} key={review.id} />;
+					})
+				) : (
+					<h1>리뷰 없음</h1>
+				)}
 			</Box>
 		</Box>
 	);
