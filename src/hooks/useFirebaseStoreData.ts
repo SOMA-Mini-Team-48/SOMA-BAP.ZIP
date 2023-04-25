@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { Store } from '../types/stores';
 import { db } from '../utils/firebase';
+import { useRecoilState } from 'recoil';
+import { allStoresState } from '../store/store';
 
 const useFirebaseStoreData = () => {
 	const [stores, setStores] = useState<Store[] | []>([]);
 	const [isLoading, setIsLoading] = useState(true);
-
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const [globalStores, setGlobalStores] = useRecoilState(allStoresState);
 	useEffect(() => {
 		const fetchStores = async () => {
 			const storesCollectionRef = collection(db, 'stores');
@@ -29,6 +32,7 @@ const useFirebaseStoreData = () => {
 			);
 
 			setStores(storesData);
+			setGlobalStores(storesData);
 			setIsLoading(false);
 		};
 

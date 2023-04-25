@@ -1,36 +1,79 @@
-import React from 'react';
-import { Box, Button } from '@mui/material';
-import StoreListItem from '../component/StoreListItem';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Box, Button, MenuItem, Select } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 import { Store } from '../types/stores';
 import { Map } from '@mui/icons-material';
+import StoreListSection from '../component/StoreListSection';
 
 const ListPage = () => {
 	const location = useLocation();
 	const stores = location.state?.stores ?? [];
-	const navigate = useNavigate();
-
+	const [sortBy, setSortBy] = useState('랜덤순');
+	const [sortedStores, setSortedStores] = useState<Store[]>(stores);
 	const handleMapButton = () => {
-		navigate('/', { replace: true });
+		window.location.replace('/');
 	};
+
+	const changeSortBy = (e: {
+		target: { value: React.SetStateAction<string> };
+	}) => {
+		const value = e.target.value.toString();
+		setSortBy(value);
+		sortStore(value);
+	};
+	const sortStore = (value: string) => {
+		if (value == '랜덤순') {
+			setSortedStores(sortedStores.sort(() => Math.random() - 0.5));
+		} else if (value == '별점순') {
+			setSortedStores(
+				sortedStores.sort((a: Store, b: Store) => b.totalRating - a.totalRating)
+			);
+		} else {
+			setSortedStores(
+				sortedStores.sort((a: Store, b: Store) => b.reviewCount - a.reviewCount)
+			);
+		}
+	};
+
 	return (
-		<Box height={'100%'} bgcolor={'#fff'} overflow="scroll">
-			{stores && stores?.length >= 1 ? (
-				stores.map((store: Store) => {
-					return <StoreListItem store={store} key={store.id} />;
-				})
-			) : (
-				<h1>데이터 없음</h1>
-			)}
+		<Box
+			sx={{
+				height: '100%',
+				bgcolor: '#fff',
+				width: '100%',
+				overflow: 'scroll',
+			}}
+		>
+			<StoreListSection stores={sortedStores} />
 			<Box sx={{ display: 'flex', justifyContent: 'end' }}>
-				<Button
-					sx={{ position: 'absolute', bottom: 0, m: 1 }}
-					startIcon={<Map />}
-					variant="contained"
-					onClick={handleMapButton}
+				<Box
+					sx={{
+						position: 'absolute',
+						bottom: 0,
+						m: 1,
+						display: 'flex',
+						flexDirection: 'column',
+						gap: 1,
+					}}
 				>
-					지도
-				</Button>
+					<Select
+						size="small"
+						value={sortBy}
+						onChange={changeSortBy}
+						sx={{ bgcolor: '#fff' }}
+					>
+						<MenuItem value={'랜덤순'}>랜덤순</MenuItem>
+						<MenuItem value={'별점순'}>별점순</MenuItem>
+						<MenuItem value={'리뷰순'}>리뷰순</MenuItem>
+					</Select>
+					<Button
+						startIcon={<Map />}
+						variant="contained"
+						onClick={handleMapButton}
+					>
+						지도
+					</Button>
+				</Box>
 			</Box>
 			<Box height={15} />
 		</Box>

@@ -6,14 +6,12 @@ import { currentStoresState } from '../store/store';
 
 type Props = {
 	bounds: any;
-	selectStore: Store | null;
 };
 
-const useCurrentStores = ({ bounds, selectStore }: Props) => {
+const useCurrentStores = ({ bounds }: Props) => {
 	const { stores, isLoading } = useFirebaseStoreData();
 	const [currentGlobalStores, setCurrentGlobalStores] =
 		useRecoilState(currentStoresState);
-
 	const mapRef = useRef<any>(null);
 	const convertBounds = (mapRef: any) => {
 		if (!mapRef.current?.bounds) return;

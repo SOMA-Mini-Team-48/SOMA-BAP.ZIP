@@ -14,8 +14,7 @@ const DetailStorePage = () => {
 	const location = useLocation();
 	const indivStore = location.state?.store ?? null;
 	const { reviews, isLoading } = useFirebaseIndivStoreData(indivStore.id);
-
-	console.log(indivStore);
+	console.log(indivStore, reviews);
 	if (isLoading) {
 		return (
 			<Box

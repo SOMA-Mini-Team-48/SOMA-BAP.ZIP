@@ -1,14 +1,20 @@
 import React from 'react';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import { Fragment, MouseEvent, useState } from 'react';
-import { Menu as MenuIcon } from '@mui/icons-material';
+import { Menu as MenuIcon, Search } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 type Props = {
 	pages: string[];
 	pagesHandlers: (() => void)[];
+	handleSearchModal: () => void;
 };
 
-const HeaderMobileSection = ({ pages, pagesHandlers }: Props) => {
+const HeaderMobileSection = ({
+	pages,
+	pagesHandlers,
+	handleSearchModal,
+}: Props) => {
 	const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
 	const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
@@ -64,9 +70,16 @@ const HeaderMobileSection = ({ pages, pagesHandlers }: Props) => {
 				</Menu>
 			</Box>
 			<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-				{/* logo */}
+				<Link to="/">
+					<img src="/logo240.webp" alt="logo" height={50} />
+				</Link>
 			</Box>
-			<Box sx={{ display: { xs: 'flex', md: 'none' } }}></Box>
+			<IconButton
+				sx={{ flexGrow: 0, display: { xs: 'block', md: 'none' } }}
+				onClick={handleSearchModal}
+			>
+				<Search />
+			</IconButton>
 		</Fragment>
 	);
 };
