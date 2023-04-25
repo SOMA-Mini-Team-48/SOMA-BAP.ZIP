@@ -6,6 +6,6 @@ export const ReviewBox = styled(Box)({
 	padding: '16px',
 });
 export const CustomStar = styled(Star)({
-	color: '#1976d2',
-	marginRight: '8px',
+	color: '#faaf00',
+	marginRight: '4px',
 });

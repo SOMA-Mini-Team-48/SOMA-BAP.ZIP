@@ -6,7 +6,15 @@ import {
 	ReviewRating,
 } from './ReviewWriteModal.styles';
 import { Button, Rating, TextField, Typography } from '@mui/material';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import {
+	addDoc,
+	collection,
+	doc,
+	getDocs,
+	query,
+	serverTimestamp,
+	updateDoc,
+} from 'firebase/firestore';
 import { db } from '../../utils/firebase';
 type Props = {
 	open: boolean;
@@ -20,7 +28,6 @@ const ReviewWriteModal = ({ open, onClose, storeName, storeId }: Props) => {
 	const [content, setContent] = useState('');
 	const [rating, setRating] = useState<number | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
-
 	const handleSubmit = async () => {
 		setIsLoading(true);
 		if (!username || !content || !rating) {
@@ -28,13 +35,32 @@ const ReviewWriteModal = ({ open, onClose, storeName, storeId }: Props) => {
 			setIsLoading(false);
 			return;
 		}
+
 		try {
+			const reviewsRef = collection(db, 'stores', storeId, 'review');
+
+			const q = query(reviewsRef);
+			const querySnapshot = await getDocs(q);
+
+			const reviewsData = querySnapshot.docs.map((doc) => ({
+				...doc.data(),
+			}));
+			const ratings =
+				reviewsData.reduce((acc, review) => acc + review.rating, 0) + rating;
+			const reviewsLength = reviewsData.length + 1;
+			const storeRef = doc(db, 'stores', storeId);
+			await updateDoc(storeRef, {
+				totalRating: ratings / reviewsLength,
+				reviewCount: reviewsLength,
+			});
+
 			await addDoc(collection(db, `stores/${storeId}/review`), {
 				username,
 				content,
 				rating,
 				date: serverTimestamp(),
 			});
+			window.location.reload();
 			setIsLoading(false);
 		} catch (error) {
 			console.error('리뷰 추가중 에러: ', error);

@@ -6,6 +6,6 @@ export const ContentBox = styled(Box)({
 	padding: '16px',
 });
 export const CustomStar = styled(Star)({
-	color: '#4B85F6',
+	color: '#faaf00',
 	marginRight: '4px',
 });

@@ -42,9 +42,6 @@ const MarkerSection = ({ stores }: Props) => {
 				marker = new naver.maps.Marker({
 					position: latlng,
 				});
-			marker.addListener('click', () => {
-				console.log(1);
-			});
 
 			markers.push(marker);
 		}

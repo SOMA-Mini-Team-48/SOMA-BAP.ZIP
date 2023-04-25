@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-	Container as MapDiv,
-	NaverMap,
-	Marker,
-	useNavermaps,
-} from 'react-naver-maps';
+import { Container as MapDiv, NaverMap, Marker } from 'react-naver-maps';
 import { Bounds, Store } from '../../types/stores';
 import useCurrentStores from '../../hooks/useCurrentStore';
 import { debounce } from '@mui/material';

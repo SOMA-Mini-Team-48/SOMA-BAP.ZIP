@@ -4,7 +4,7 @@ import { db } from '../utils/firebase';
 import { Review } from '../types/stores';
 
 const useFirebaseIndivStoreData = (id: string | undefined) => {
-	const [reviews, setReviews] = useState<Review | []>([]);
+	const [reviews, setReviews] = useState<Review[] | []>([]);
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		const fetchReviews = async () => {
@@ -24,7 +24,7 @@ const useFirebaseIndivStoreData = (id: string | undefined) => {
 					};
 				})
 			);
-			setReviews(reviewData as Review | []);
+			setReviews(reviewData as Review[] | []);
 			setIsLoading(false);
 		};
 		if (id) {
