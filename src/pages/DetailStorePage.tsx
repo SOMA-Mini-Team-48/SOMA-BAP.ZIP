@@ -25,7 +25,7 @@ const DetailStorePage = () => {
 			</Box>
 		);
 	}
-	return <DetailStoreSection store={indivStore} />;
+	return <DetailStoreSection store={indivStore} reviews={reviews} />;
 };
 
 export default DetailStorePage;
