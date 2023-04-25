@@ -1,9 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { Store } from '../types/stores';
 import { db } from '../utils/firebase';
 import { useRecoilState } from 'recoil';
 import { allStoresState } from '../store/store';
+
+const unSelectedImageIcons = [
+	process.env.PUBLIC_URL + '/unselected-marker-icons/한식.webp',
+	process.env.PUBLIC_URL + '/unselected-marker-icons/일식.webp',
+	process.env.PUBLIC_URL + '/unselected-marker-icons/중식.webp',
+	process.env.PUBLIC_URL + '/unselected-marker-icons/분식.webp',
+	process.env.PUBLIC_URL + '/unselected-marker-icons/양식.webp',
+	process.env.PUBLIC_URL + '/unselected-marker-icons/카페.webp',
+	process.env.PUBLIC_URL + '/unselected-marker-icons/패스트푸드.webp',
+];
 
 const useFirebaseStoreData = () => {
 	const [stores, setStores] = useState<Store[] | []>([]);
@@ -37,6 +47,12 @@ const useFirebaseStoreData = () => {
 		};
 
 		fetchStores();
+	}, []);
+	useLayoutEffect(() => {
+		for (let i = 0; i < unSelectedImageIcons.length; i++) {
+			const img = new Image();
+			img.src = unSelectedImageIcons[i];
+		}
 	}, []);
 
 	return { stores, isLoading };
