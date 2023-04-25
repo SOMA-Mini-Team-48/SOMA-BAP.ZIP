@@ -72,6 +72,10 @@ export const selectedMarkerIcon = (type: number) => {
 			size: new naver.maps.Size(40, 40),
 			origin: new naver.maps.Point(MARKER_WIDTH * type, 0),
 		},
+		{
+			url: process.env.PUBLIC_URL + 'center.png',
+			size: new naver.maps.Size(40, 40),
+		},
 	];
 	return icon[type];
 };

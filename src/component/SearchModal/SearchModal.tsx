@@ -25,7 +25,7 @@ const SearchModal = () => {
 		setSearchModalOpen(false);
 	};
 	const handleStoreClick = (store: Store) => {
-		navigate(`/store/${store.id}`, { state: { store } });
+		navigate(`/store/${store.id}`, { replace: true });
 		setSearchModalOpen(false);
 	};
 

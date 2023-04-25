@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import HeaderMobileSection from '../HeaderMobileSection';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import { searchModalState } from '../../store/store';
@@ -14,6 +14,7 @@ import { useRecoilState } from 'recoil';
 
 const HeaderSection = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const pages = ['맛집 등록', '버그 제보'];
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [searchModalOpen, setSearchModalOpen] =
@@ -61,13 +62,15 @@ const HeaderSection = () => {
 								</Typography>
 							</Button>
 						))}
-						<IconButton
-							sx={{ display: 'flex', mx: 1 }}
-							size="small"
-							onClick={handleSearchModalOpen}
-						>
-							<Search />
-						</IconButton>
+						{location.pathname == '/' && (
+							<IconButton
+								sx={{ display: 'flex', mx: 1 }}
+								size="small"
+								onClick={handleSearchModalOpen}
+							>
+								<Search />
+							</IconButton>
+						)}
 					</Box>
 				</Toolbar>
 			</Container>

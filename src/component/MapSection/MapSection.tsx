@@ -44,7 +44,6 @@ const MapSection = () => {
 		setSelectStore(null);
 		setDrawerOpen(false);
 	};
-
 	return (
 		<MapDiv
 			style={{
@@ -62,17 +61,15 @@ const MapSection = () => {
 				ref={mapRef}
 			>
 				{selectStore && (
-					<>
-						<Marker
-							zIndex={100}
-							icon={selectedMarkerIcon(selectStore.type)}
-							onClick={dismissMarker}
-							position={{
-								lat: selectStore.coordinates[0],
-								lng: selectStore.coordinates[1],
-							}}
-						/>
-					</>
+					<Marker
+						zIndex={100}
+						icon={selectedMarkerIcon(selectStore.type)}
+						onClick={dismissMarker}
+						position={{
+							lat: selectStore.coordinates[0],
+							lng: selectStore.coordinates[1],
+						}}
+					/>
 				)}
 				<StoreBottomDrawerSection
 					isOpen={drawerOpen}
@@ -81,19 +78,26 @@ const MapSection = () => {
 				{isLoading ? (
 					<Loading></Loading>
 				) : (
-					currentGlobalStores &&
-					currentGlobalStores.map((store) => (
+					<>
 						<Marker
-							key={store.id}
-							zIndex={1}
-							icon={unSelectedMarkerIcon(store.type)}
-							onClick={() => handleMarker(store)}
-							position={{
-								lat: store.coordinates[0],
-								lng: store.coordinates[1],
-							}}
+							zIndex={99}
+							icon={selectedMarkerIcon(7)}
+							position={SWMAESTRO_CENTER_COORDINATES}
 						/>
-					))
+						{currentGlobalStores &&
+							currentGlobalStores.map((store) => (
+								<Marker
+									key={store.id}
+									zIndex={1}
+									icon={unSelectedMarkerIcon(store.type)}
+									onClick={() => handleMarker(store)}
+									position={{
+										lat: store.coordinates[0],
+										lng: store.coordinates[1],
+									}}
+								/>
+							))}
+					</>
 				)}
 			</NaverMap>
 		</MapDiv>

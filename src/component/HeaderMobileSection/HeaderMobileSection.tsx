@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import { Fragment, MouseEvent, useState } from 'react';
 import { Menu as MenuIcon, Search } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 type Props = {
 	pages: string[];
@@ -24,7 +24,7 @@ const HeaderMobileSection = ({
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
 	};
-
+	const location = useLocation();
 	return (
 		<Fragment>
 			<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -74,12 +74,11 @@ const HeaderMobileSection = ({
 					<img src="/logo240.webp" alt="logo" height={50} />
 				</Link>
 			</Box>
-			<IconButton
-				sx={{ flexGrow: 0, display: { xs: 'block', md: 'none' } }}
-				onClick={handleSearchModal}
-			>
-				<Search />
-			</IconButton>
+			<Box sx={{ flexGrow: 0, display: { xs: 'block', md: 'none' } }}>
+				<IconButton onClick={handleSearchModal}>
+					{location.pathname == '/' ? <Search /> : <Box px={2}></Box>}
+				</IconButton>
+			</Box>
 		</Fragment>
 	);
 };
