@@ -40,6 +40,9 @@ const MapSection = () => {
 	const debouncedHandleBoundsChanged = debounce(handleBoundsChanged, 100);
 
 	const handleMarker = (store: any) => {
+		if (selectStore) {
+			setSelectStore(null);
+		}
 		setSelectStore(store);
 		setDrawerOpen(true);
 	};

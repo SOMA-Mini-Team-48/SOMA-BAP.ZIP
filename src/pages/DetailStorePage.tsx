@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import useFirebaseIndivStoreData from '../hooks/useFirebaseIndivStoreData';
 import { Box } from '@mui/material';
 import Loading from '../component/Loading';
-import DetailStoreSection from '../component/DetailStoreSection';
 
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
