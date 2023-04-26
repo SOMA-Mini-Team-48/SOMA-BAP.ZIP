@@ -5,23 +5,26 @@
 
 <br>
 
-# 소마 BAP.ZIP
-
-### 소마인들을 위한 <strong>맛집 지도 서비스</strong>
-
-<br/><br/>
-
-### 소프트웨어 마에스트로 미니프로젝트 48팀
+# 소마인들을 위한 맛집 지도 : 소마 BAP.ZIP
 
 </div>
 
+<p align="center">
+    <img src="https://skillicons.dev/icons?i=ts,react,mui,emotion,firebase,vercel">
+    <br />
+    기술스택: Typescript, React, MUI, Emotion, Firebase, Vercel
+  </p>
+<br/>
 <div align="center">
     <table border="1">
-        <th><a href="https://github.com/ShinJongUng">신종웅</a></th>
-        <th><a href="https://github.com/SoobinJung1013">정수빈</a></th>
-        <th><a href="https://github.com/ShinJongUng">이시영</a></th>
-        <th><a href="https://github.com/HanDaYeon-coder">한다연</a></th>
-        <th><a href="https://github.com/thguss">김소현</a></th>
+        <th colspan="5">소프트웨어 마에스트로 미니프로젝트 48팀</th>
+        <tr>
+            <td><a href="https://github.com/ShinJongUng">신종웅</a></td>
+            <td><a href="https://github.com/SoobinJung1013">정수빈</a></td>
+            <td><a href="https://github.com/ShinJongUng">이시영</a></td>
+            <td><a href="https://github.com/HanDaYeon-coder">한다연</a></td>
+            <td><a href="https://github.com/thguss">김소현</a></td>
+        </tr>
         <tr>
             <td>
                 <img src="https://avatars.githubusercontent.com/u/65454966" width='120' />
