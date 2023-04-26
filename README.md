@@ -1,17 +1,21 @@
-<h1 align="center">소마 BAP.ZIP 🍚</h1>
+<div align="center">
+<a href="https://danverse.vercel.app/">
+<img align="center" src="https://smbap.vercel.app/logo240.webp" width='200' alt="소마 BAP.ZIP로고"/>
+</a>
 
-<p align="center">
-<img align="center" src="https://smbap.vercel.app/logo240.webp" width='250' />
-</p>
-<br/>
-<h3 align="center">
-소마인을 위한 맛집 지도 서비스
-</h3>
-<br/>
+<br>
+
+# 소마 BAP.ZIP 🍚
+
+소마인들을 위한 <strong>맛집 지도 서비스</strong>
+<br/><br/>
+소프트웨어 마에스트로 미니프로젝트 48팀 프로젝트 팀원
+
+</div>
 
 <div align="center">
     <table border="1">
-        <th><a href="https://github.com/vgihan">신종웅</a></th>
+        <th><a href="https://github.com/ShinJongUng">신종웅</a></th>
         <th><a href="https://github.com/ShinJongUng">정수빈</a></th>
         <th><a href="https://github.com/ShinJongUng">이시영</a></th>
         <th><a href="https://github.com/ShinJongUng">한다연</a></th>
