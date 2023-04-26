@@ -8,7 +8,7 @@
 # 소마인들을 위한 맛집 지도 : 소마 BAP.ZIP
 
 </div>
-
+<br />
 <p align="center">
     <img src="https://skillicons.dev/icons?i=ts,react,mui,emotion,firebase,vercel">
     <br />
