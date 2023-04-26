@@ -58,8 +58,6 @@
 #### 2. 자신만이 알고 있는 맛집을 직접 등록하고 리뷰를 작성할 수 있습니다.
 <img width="1356" alt="스크린샷 2023-04-26 시간: 18 34 28" src="https://user-images.githubusercontent.com/75533232/234535153-ceb7e3f6-f706-4aa8-b26b-784f3b457e78.png">
 
-
-<br/>
 <br/>
 <br/>
 
