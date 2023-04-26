@@ -49,4 +49,4 @@
 
 ## 프로젝트 아키텍쳐
 
- <img src="./readme/project-architecture.png">
+ <img src="https://cdn.discordapp.com/attachments/1091676313540120636/1100657095675744266/project-architecture.png">
