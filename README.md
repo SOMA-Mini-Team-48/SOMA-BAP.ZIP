@@ -23,7 +23,7 @@
         <tr>
             <td><a href="https://github.com/ShinJongUng">신종웅</a></td>
             <td><a href="https://github.com/SoobinJung1013">정수빈</a></td>
-            <td><a href="https://github.com/ShinJongUng">이시영</a></td>
+            <td><a href="https://github.com/Bona04">이시영</a></td>
             <td><a href="https://github.com/HanDaYeon-coder">한다연</a></td>
             <td><a href="https://github.com/thguss">김소현</a></td>
         </tr>
